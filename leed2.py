@@ -1,4 +1,4 @@
-# Q16，爬樓梯
+# 70. Climbing Stairs，爬樓梯
 class Solution:
     def climbStairs(self, n: int) -> int:
         hash_table = {}
@@ -10,7 +10,7 @@ class Solution:
         method = hash_table[str(n)]
         return method
 
-# Q17，已知一單向且sorted(小到大)的linked-list，刪除list內的重複項
+# 83. Remove Duplicates from Sorted List，已知一單向且sorted(小到大)的linked-list，刪除list內的重複項
 class Solution:
 # Definition for singly-linked list.
 # class ListNode:
@@ -36,8 +36,8 @@ class Solution:
             
         return watch.next
 
-# Q18，已知兩sorted(小到大)整數陣列，merge兩陣列後sort(小到大)指派給nums1(長度為m+n)，m為nums1長度，
-#      n為nums1陣列尾端0的個數以及nums2的長度，該函式輸出為None
+# 88. Merge Sorted Array，已知兩sorted(小到大)整數陣列，merge兩陣列後sort(小到大)指派給nums1(長度為m+n)，m為nums1長度，
+#     n為nums1陣列尾端0的個數以及nums2的長度，該函式輸出為None
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         if not nums2:
