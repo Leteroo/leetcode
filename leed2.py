@@ -45,7 +45,7 @@ class Solution:
         nums1.sort()
         for i in range(n):
             nums1.remove(0)
-  
+
 # 94. Binary Tree Inorder Traversal
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
