@@ -97,13 +97,8 @@ class Solution:
         else:
             return False
            
-# 21. Merge Two Sorted Lists，merge並sort(小到大)兩個linked-list
+# 21. Merge Two Sorted Lists，merge並sort(小到大)兩個(singly)linked-list
 class Solution:
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         dum = ListNode(None)    # 值為None、指標只指向第一個節點的旁觀節點
         prev = dum              # 設定prev節點，負責移動指標接取next
