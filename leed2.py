@@ -36,4 +36,20 @@ class Solution:
             
         return watch.next
 
-# Q18，
+# Q18，已知兩sorted(小到大)整數陣列，merge兩陣列後sort(小到大)指派給nums1(長度為m+n)，m為nums1長度，
+#      n為nums1陣列尾端0的個數以及nums2的長度，該函式輸出為None
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        if not nums2:
+            return
+        if not nums1:
+            for i in range(n):
+                nums1[i] = nums2[i]
+                return
+        nums1.extend(nums2)
+        nums1.sort()
+        for i in range(n):
+            nums1.remove(0)
+  
+# Q19，
+      
