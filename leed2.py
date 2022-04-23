@@ -12,11 +12,6 @@ class Solution:
 
 # 83. Remove Duplicates from Sorted List，已知一單向且sorted(小到大)的linked-list，刪除list內的重複項
 class Solution:
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
         watch = ListNode(None)
         point = watch
@@ -51,5 +46,15 @@ class Solution:
         for i in range(n):
             nums1.remove(0)
   
-# Q19，
-      
+# 94. Binary Tree Inorder Traversal
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        self.res = []
+        self.dfs(root)
+        return self.res
+    def dfs(self, node):
+        if not node:
+            return
+        self.dfs(node.left)
+        self.res.append(node.val)
+        self.dfs(node.right)      
