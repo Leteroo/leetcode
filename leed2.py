@@ -46,7 +46,7 @@ class Solution:
         for i in range(n):
             nums1.remove(0)
 
-# 94. Binary Tree Inorder Traversal
+# 94. Binary Tree Inorder Traversal，return Inorder Traversa of node values
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         self.res = []
@@ -57,4 +57,27 @@ class Solution:
             return
         self.dfs(node.left)
         self.res.append(node.val)
-        self.dfs(node.right)      
+        self.dfs(node.right)    
+
+# 100. Same Tree，check if two binary trees are same or not
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        self.lis = []
+        self.tree(p)
+        a = self.lis
+        
+        self.lis = []
+        self.tree(q)
+        b = self.lis
+        
+        if a == b:
+            return True
+        return False
+    # preorder
+    def tree(self, node):
+        if not node:
+            self.lis.append(-1)
+            return
+        self.lis.append(node.val)
+        self.tree(node.left)
+        self.tree(node.right)        
