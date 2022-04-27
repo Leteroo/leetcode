@@ -81,7 +81,7 @@ class Solution:
         self.lis.append(node.val)
         self.tree(node.left)
         self.tree(node.right)
-# better method (from#101)
+# better method (inspired by #101)
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         def equa(l, r):
