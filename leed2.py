@@ -138,3 +138,10 @@ class Solution:
             else:
                 return isSymm(l.left,r.right) and isSymm(l.right,r.left)
         return isSymm(root.left,root.right)
+
+# 104. Maximum Depth of Binary Tree
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return max(self.maxDepth(root.left)+1, self.maxDepth(root.right)+1)
