@@ -145,3 +145,25 @@ class Solution:
         if not root:
             return 0
         return max(self.maxDepth(root.left)+1, self.maxDepth(root.right)+1)
+        
+# 168. Excel Sheet Column Title，given an integer，return its corresponding column title as it appears in an Excel sheet。
+#      (A = 1 。。。 Z = 26、AA = 27 。。。)
+class Solution:
+    def convertToTitle(self, columnNumber: int) -> str:
+        table = {}
+        sheet = []
+        ot = ''
+        for i in range(26):
+            table[i] = chr(65+i)
+            
+        while columnNumber > 0:
+            b = columnNumber - 1
+            sheet.append(b % 26)
+            if columnNumber <= 26:
+                break
+            columnNumber = b // 26
+            
+        for i in range(-1, -len(sheet)-1, -1):
+            ot += table[sheet[i]]
+        return ot
+        
