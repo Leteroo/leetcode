@@ -80,4 +80,61 @@ class Solution:
             return
         self.lis.append(node.val)
         self.tree(node.left)
-        self.tree(node.right)        
+        self.tree(node.right)
+# better method (from#101)
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        def equa(l, r):
+            if l == None and r != None or  l != None and r == None:
+                return False
+            elif l == None and r == None:
+                return True
+            elif l.val != r.val:
+                return False
+            else:
+                return equa(l.left, r.left) and equa(l.right, r.right)
+        return equa(p, q)
+
+# 101. Symmetric Tree，check if a binary tree is symmetric around its center
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        self.lis = []
+        self.treeleft(root)
+        a = self.lis
+        
+        self.lis = []
+        self.treeright(root)
+        b = self.lis
+        
+        if a == b:
+            return True
+        return False
+        
+    def treeleft(self, node):
+        if not node:
+            self.lis.append(-1)
+            return
+        self.lis.append(node.val)
+        self.treeleft(node.left)
+        self.treeleft(node.right)
+        
+    def treeright(self, node):
+        if not node:
+            self.lis.append(-1)
+            return
+        self.lis.append(node.val)
+        self.treeright(node.right)
+        self.treeright(node.left)
+# better method
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def isSymm(l,r):
+            if l == None and r != None or l != None and r == None:
+                return False
+            elif l == None and r == None:
+                return True
+            elif l.val != r.val:
+                return False
+            else:
+                return isSymm(l.left,r.right) and isSymm(l.right,r.left)
+        return isSymm(root.left,root.right)
