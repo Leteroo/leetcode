@@ -166,4 +166,38 @@ class Solution:
         for i in range(-1, -len(sheet)-1, -1):
             ot += table[sheet[i]]
         return ot
+
+# 171. Excel Sheet Column Number，given a string(columnTitle)，return its corresponding column number in an Excel sheet
+class Solution:
+    def titleToNumber(self, columnTitle: str) -> int:
+        table = {}
+        su = 0
+        for i in range(1, 27):
+            table[chr(64+i)] = i
+        for i in range(-1, -len(columnTitle)-1, -1):
+            su += table[columnTitle[i]] * pow(26, -i-1)
+        return su
         
+# 202. Happy number，replace the number by the sum of the squares of its digits，until the number equals 1, return True.
+#      Or it loops endlessly in a cycle which does not include 1, return False
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        hash_table = {}
+        i = 0
+        
+        while n != 1:
+            sum = 0
+            
+            if n in hash_table:
+                return False
+            hash_table[n] = i
+            i += 1
+            
+            while n >= 10:
+                tempnum = n % 10
+                sum += pow(tempnum, 2)
+                n = n // 10
+            sum += pow(n, 2)
+            n = sum
+            
+        return True
