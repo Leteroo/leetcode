@@ -9,6 +9,7 @@ class Solution:
                     if i != j:
                         return [i, j]
         return []
+        
     # best solution
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         # 利用hash_table暫存nums串列內 數值和其所對應的索引值
@@ -29,6 +30,7 @@ class Solution:
             if strx[i] != strx[-(i+1)]:     # 判斷由左數來和由右數來第i+1位的數有沒有相等
                 return False
         return True
+        
     # best solution
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
@@ -120,20 +122,20 @@ class Solution:
 #     列大小不變，以'_'補足項數
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        if not nums:    # 是否為空陣列
+        if not nums:    
             print('nums=', nums)
             return 0
         big = max(nums) + 1     # 用來取代重複項的值，設定為陣列最大值+1以利後續的排序。
         times = len(nums)
         for i in range(times):
             if i != 0:
-                if nums[i] == nums[i - 1]:  # 判斷前一項與當前項的值是否相同
-                    nums[i - 1] = big       # 將前一項的值改成big
-        k = times - nums.count(big)         # 陣列總數減去big的數，即非重複項的總數
-        nums.sort()                         # 由小到大排序
+                if nums[i] == nums[i - 1]:  
+                    nums[i - 1] = big       
+        k = times - nums.count(big)         
+        nums.sort()                         
         for i in range(times):
             if nums[i] == big:
-                nums[i] = '_'               # 將big取代成'_'，滿足題目需求
+                nums[i] = '_'               
         print('nums=', nums)
         return k
         
@@ -159,12 +161,12 @@ class Solution:
 # 28. Implement strStr()，已知變數 needle、hashstack 2個字串，判斷needle是否存在於hashstack裡，並傳回最小索引值
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        if not needle:      # needle為空字串傳回0
+        if not needle:      
             return 0
         if needle in haystack:
             ind = haystack.find(needle)
             return ind
-        return -1           # 不包含傳回-1
+        return -1           
         
 # 35. Search Insert Position，已知1個元素為正整數且由小到大排列的陣列，輸入1個正整數，找出該正整數在陣列內的索引值，或插入陣
 #     列後該整數的索引值
@@ -184,8 +186,9 @@ class Solution:
         return mn
         
 # 53. Maximum Subarray，已知1個元素為整數的陣列，尋找最大子陣列的和，且該子陣列的元素必須為連續不間斷的
-class Solution:     # 動態規劃法
+class Solution:     
     def maxSubArray(self, nums: List[int]) -> int:
+    # 動態規劃法
         if len(nums) == 1:
             return nums[0]     
         localmax = 0
