@@ -81,9 +81,8 @@ class Solution:
         self.lis.append(node.val)
         self.tree(node.left)
         self.tree(node.right)
-# better method (inspired by #101)
-class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        
+        # better method (inspired by #101)
         def equa(l, r):
             if l == None and r != None or  l != None and r == None:
                 return False
@@ -94,7 +93,7 @@ class Solution:
             else:
                 return equa(l.left, r.left) and equa(l.right, r.right)
         return equa(p, q)
-
+        
 # 101. Symmetric Tree，check if a binary tree is symmetric around its center
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
@@ -125,9 +124,8 @@ class Solution:
         self.lis.append(node.val)
         self.treeright(node.right)
         self.treeright(node.left)
-# better method
-class Solution:
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        
+        # better method
         def isSymm(l,r):
             if l == None and r != None or l != None and r == None:
                 return False
@@ -138,6 +136,7 @@ class Solution:
             else:
                 return isSymm(l.left,r.right) and isSymm(l.right,r.left)
         return isSymm(root.left,root.right)
+        
 
 # 104. Maximum Depth of Binary Tree
 class Solution:
@@ -201,3 +200,33 @@ class Solution:
             n = sum
             
         return True
+        
+# 231. Power of two，given an integer n, if n is power of two, return True. Otherwise, return False.
+class Solution(object):
+    def isPowerOfTwo(self, n):
+        if n < 0:
+            return False
+        if n == 0:
+            return False
+        return not n & n - 1  
+        
+        #best answer
+        return n and n & n - 1
+        
+# 867. Transpose matrix
+class Solution:
+    def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
+        return [i for i in zip(*matrix)]
+    
+        #my original answer:
+        m = len(matrix)
+        n = len(matrix[0])
+        ans = [[None]*m for i in range(n)]
+    
+        for i in range(m):
+            for j in range(n):
+                ans[j][i] = matrix[i][j]
+        
+        return ans
+        
+# 
