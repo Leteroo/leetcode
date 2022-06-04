@@ -3,7 +3,9 @@ class Solution:
     def climbStairs(self, n: int) -> int:
         hash_table = {}
         hash_table[str(1)] = 1
-        hash_table[str(2)] = 2         # N層樓梯的走法總數 = 第一步走1階的走法總數 + 第一步走2階的走法總數
+        hash_table[str(2)] = 2     
+        
+        # N層樓梯的走法總數 = 第一步走1階的走法總數 + 第一步走2階的走法總數
         for i in range(1, n+1):
             if i > 2:
                 hash_table[str(i)] = hash_table[str(i-1)] + hash_table[str(i-2)]
@@ -27,8 +29,7 @@ class Solution:
             head = head.next
             point = point.next
             
-        point.next = None
-            
+        point.next = None    
         return watch.next
 
 # 88. Merge Sorted Array，已知兩sorted(小到大)整數陣列，merge兩陣列後sort(小到大)指派給nums1(長度為m+n)，m為nums1長度，
@@ -73,7 +74,6 @@ class Solution:
         if a == b:
             return True
         return False
-    # preorder
     def tree(self, node):
         if not node:
             self.lis.append(-1)
@@ -82,17 +82,21 @@ class Solution:
         self.tree(node.left)
         self.tree(node.right)
         
-        # better method (inspired by #101)
-        def equa(l, r):
-            if l == None and r != None or  l != None and r == None:
-                return False
-            elif l == None and r == None:
-                return True
-            elif l.val != r.val:
-                return False
-            else:
-                return equa(l.left, r.left) and equa(l.right, r.right)
-        return equa(p, q)
+    # better solution (inspired by #101)
+    """
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        return self.equa(p, q)
+        
+    def equa(self, l, r):
+        if l == None and r != None or  l != None and r == None:
+            return False
+        elif l == None and r == None:
+            return True
+        elif l.val != r.val:
+            return False
+        else:
+            return self.equa(l.left, r.left) and self.equa(l.right, r.right)
+    """
         
 # 101. Symmetric Tree，check if a binary tree is symmetric around its center
 class Solution:
@@ -125,18 +129,21 @@ class Solution:
         self.treeright(node.right)
         self.treeright(node.left)
         
-        # better method
-        def isSymm(l,r):
-            if l == None and r != None or l != None and r == None:
-                return False
-            elif l == None and r == None:
-                return True
-            elif l.val != r.val:
-                return False
-            else:
-                return isSymm(l.left,r.right) and isSymm(l.right,r.left)
-        return isSymm(root.left,root.right)
+    # better solution
+    """
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        return self.isSymm(root.left,root.right)
         
+    def isSymm(self, l, r):
+        if l == None and r != None or l != None and r == None:
+            return False
+        elif l == None and r == None:
+            return True
+        elif l.val != r.val:
+            return False
+        else:
+            return self.isSymm(l.left,r.right) and self.isSymm(l.right,r.left)   
+    """
 
 # 104. Maximum Depth of Binary Tree
 class Solution:
@@ -210,15 +217,15 @@ class Solution(object):
             return False
         return not n & n - 1  
         
-        #best answer
+    #best solution
+    """
+    def isPowerOfTwo(self, n):
         return n and n & n - 1
+    """
         
 # 867. Transpose matrix
 class Solution:
     def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
-        return [i for i in zip(*matrix)]
-    
-        #my original answer:
         m = len(matrix)
         n = len(matrix[0])
         ans = [[None]*m for i in range(n)]
@@ -228,5 +235,42 @@ class Solution:
                 ans[j][i] = matrix[i][j]
         
         return ans
+    
+    #best solution:
+    """
+    def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
+        return [i for i in zip(*matrix)]
+    """
         
-# 
+# 111. Minimum Depth from root down to leaf of Binary Tree.
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        
+        l_height = self.minDepth(root.left)
+        r_height = self.minDepth(root.right)        
+        if l_height == 0 or r_height == 0:
+            return 1 + max(l_height, r_height)
+        
+        return 1 + min(l_height, r_height)
+        
+    # best solution
+    """
+from collections import deque
+
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        depth = 0
+        if not root: return depth
+        queue = deque([root])
+        while queue:
+            depth += 1
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                elif not node.left:
+                    return depth
+    """

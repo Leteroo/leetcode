@@ -2,7 +2,6 @@
 # 1. Two Sum，和數
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # 固定第i+1個的數，與後面的數逐個相加，判斷有沒有等於target
         for i in range(len(nums)):  
             for j in range(i+1, len(nums)):    
                 if nums[i] + nums[j] == target:     
@@ -11,15 +10,16 @@ class Solution:
         return []
         
     # best solution
+    """
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # 利用hash_table暫存nums串列內 數值和其所對應的索引值
         hash_table = {}     
-        for i, num in enumerate(nums):      # enumerate(iterable, [start=0])：用於可迭代資料型態，傳回index與value
+        for i, num in enumerate(nums):      
             if target - num in hash_table:
                 return([hash_table[target - num], i])
-            hash_table[num] = i             # 邊判斷邊建立hash_table
+            hash_table[num] = i             
         return([])
-        
+    """
+    
 # 9. Palindrome Number，判斷迴文數
 class Solution:
     def isPalindrome(self, x: int) -> bool:
@@ -32,6 +32,7 @@ class Solution:
         return True
         
     # best solution
+    """
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
             return False
@@ -43,7 +44,8 @@ class Solution:
         if reversenum != x:
             return False
         return True
-        
+    """
+    
 # 13. Roman to Integer，羅馬數字符號轉十進位
 class Solution:
     def romanToInt(self, s: str) -> int:
